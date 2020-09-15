@@ -17,12 +17,6 @@ execute: |
         fi
     fi
 
-    # Get any out-of-archive dependencies
-    # (Currently just libnvidia-egl-wayland-dev)
-    for repo in ppa:mir-team/{release,dev}; do
-        add-apt-repository --yes --update ${repo} || add-apt-repository --yes --remove ${repo}
-    done
-
     apt-get update
 
     # to get dpkg-architecture and mk-build-deps
@@ -65,6 +59,14 @@ execute: |
 
         apt-get update
     fi
+
+    # Get any out-of-archive dependencies
+    # (Currently just libnvidia-egl-wayland-dev)
+    # Do this after setting up cross-building, so that we get the right
+    # architecture set.
+    for repo in ppa:mir-team/{release,dev}; do
+        add-apt-repository --yes --update ${repo} || add-apt-repository --yes --remove ${repo}
+    done
 
     cd $SPREAD_PATH
 
