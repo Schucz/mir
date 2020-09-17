@@ -57,7 +57,7 @@ Build-Depends: cmake,
                libxcursor-dev,
                libyaml-cpp-dev,
                libwayland-dev,
-               libnvidia-egl-wayland-dev [amd64],
+               libnvidia-egl-wayland-dev,
                eglexternalplatform-dev,
                systemtap-sdt-dev,
                wlcs
