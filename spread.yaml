@@ -75,3 +75,4 @@ path:
 
 exclude:
     - .git
+    - cmake-build-*

@@ -7,22 +7,24 @@ systems: [ubuntu-*]
 summary: Build Ubuntu packages
 
 execute: |
+    add-apt-repository universe
+    apt-get update
     apt-get install \
         --yes \
         --no-install-recommends \
         sbuild \
-        ubuntu-dev-tools
+        ubuntu-dev-tools \
+        debootstrap \
+        qemu-user-static
 
-    cat > ~/.sbuildrc <<EOF \
-        $mailto = 'null@example.com'; \
-        1; \
-        EOF
+    printf "\$mailto = 'null@example.com';\n1;\n" > ~/.sbuildrc
 
+    adduser $USER sbuild
     # set host and build environment up
     source <( dpkg-architecture --print-set --host-arch ${ARCH} )
 
-    mk-sbuild --arch=${DEB_BUILD_ARCH} --target=${DEB_HOST_ARCH} --eatmydata $(lsb_release --short --codename)
+    sg sbuild -c "mk-sbuild --arch=${DEB_BUILD_ARCH} --target=${DEB_HOST_ARCH} --eatmydata $(lsb_release --short --codename)"
 
     cd $SPREAD_PATH
 
-    sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}
+    sg sbuild -c "sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}"
