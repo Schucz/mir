@@ -1,0 +1,28 @@
+environment:
+    DEB_BUILD_OPTIONS: "parallel=$( nproc ) noopt ${NOCHECK}"
+    NO_PKG_MANGLE: 1
+
+systems: [ubuntu-*]
+
+summary: Build Ubuntu packages
+
+execute: |
+    apt-get install \
+        --yes \
+        --no-install-recommends \
+        sbuild \
+        ubuntu-dev-tools
+
+    cat > ~/.sbuildrc <<EOF \
+        $mailto = 'null@example.com'; \
+        1; \
+        EOF
+
+    # set host and build environment up
+    source <( dpkg-architecture --print-set --host-arch ${ARCH} )
+
+    mk-sbuild --arch=${DEB_BUILD_ARCH} --target=${DEB_HOST_ARCH} --eatmydata $(lsb_release --short --codename)
+
+    cd $SPREAD_PATH
+
+    sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}

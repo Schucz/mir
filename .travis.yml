@@ -49,7 +49,7 @@ env:
   - TASK=google:debian-sid:spread/build/debian:amd64
   - TASK=google:ubuntu-18.04-64:spread/build/ubuntu:amd64
   - TASK=google:ubuntu-20.04-64:spread/build/ubuntu:amd64
-  - TASK=google:ubuntu-20.04-64:spread/build/ubuntu:arm64
+  - TASK=google:ubuntu-20.04-64:spread/build/ubuntu-sbuild:arm64
   - TASK=google:ubuntu-20.04-64:spread/build/ubuntu:rpi
   - TASK=google:ubuntu-20.04-64:spread/build/ubuntu:clang
   - TASK=google:fedora-31-64:spread/build/fedora:amd64
