@@ -16,7 +16,7 @@ execute: |
         schroot \
         ubuntu-dev-tools \
         debootstrap \
-        devhelper \
+        debhelper \
         dh-python \
         lsb-invalid-mta \
         qemu-user-static
