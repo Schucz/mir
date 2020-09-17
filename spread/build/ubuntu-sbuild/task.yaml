@@ -16,6 +16,9 @@ execute: |
         schroot \
         ubuntu-dev-tools \
         debootstrap \
+        devhelper \
+        dh-python \
+        lsb-invalid-mta \
         qemu-user-static
 
     printf "\$mailto = 'null@example.com';\n1;\n" > ~/.sbuildrc
@@ -28,4 +31,4 @@ execute: |
 
     cd $SPREAD_PATH
 
-    sg sbuild -c "sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}"
+    sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}
