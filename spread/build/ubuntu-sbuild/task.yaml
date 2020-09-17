@@ -13,6 +13,7 @@ execute: |
         --yes \
         --no-install-recommends \
         sbuild \
+        schroot \
         ubuntu-dev-tools \
         debootstrap \
         qemu-user-static
