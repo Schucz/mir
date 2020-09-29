@@ -29,5 +29,6 @@ execute: |
     sg sbuild -c "mk-sbuild --arch=${DEB_BUILD_ARCH} --target=${DEB_HOST_ARCH} --eatmydata $(lsb_release --short --codename)"
 
     cd $SPREAD_PATH
+    echo "export XDG_RUNTIME_DIR=/tmp" >> debian/opts.mk
 
     sbuild -j $(nproc) -v -d $(lsb_release --short --codename) --build=${DEB_BUILD_ARCH} --host=${DEB_HOST_ARCH}
