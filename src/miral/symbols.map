@@ -119,9 +119,9 @@ global:
     miral::StartupInternalClient::StartupInternalClient*;
     miral::StartupInternalClient::operator*;
     miral::WaylandExtensions::?WaylandExtensions*;
-    miral::WaylandExtensions::Context::?Context*;
-    miral::WaylandExtensions::Context::Context*;
-    miral::WaylandExtensions::Context::operator*;
+#    miral::WaylandExtensions::Context::?Context*;
+#    miral::WaylandExtensions::Context::Context*;
+#    miral::WaylandExtensions::Context::operator*;
     miral::WaylandExtensions::WaylandExtensions*;
     miral::WaylandExtensions::add_extension*;
     miral::WaylandExtensions::add_extension_disabled_by_default*;
